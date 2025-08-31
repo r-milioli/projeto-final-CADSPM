@@ -60,7 +60,7 @@ export class HeaderComponent implements OnInit {
       case '/solicitacao-form':
         return 'Nova Solicitação';
       default:
-        return 'Portal PMERJ';
+        return 'Solicitação PMERJ';
     }
   }
 }
