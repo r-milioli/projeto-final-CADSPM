@@ -1,0 +1,120 @@
+<app-header></app-header>
+
+<main class="form-main">
+  <div class="container">
+    <div class="form-header">
+      <h1>Nova Solicitação</h1>
+      <p>Preencha os dados para solicitar autorização</p>
+    </div>
+
+    <div class="form-container">
+      <div class="form-card">
+        <div class="form-tabs">
+          <button class="tab-btn active">
+            <i class="fas fa-file-alt"></i>
+            <span>Nada Opor</span>
+          </button>
+          <button class="tab-btn">
+            <i class="fas fa-chalkboard-teacher"></i>
+            <span>Palestra</span>
+          </button>
+        </div>
+
+        <form class="solicitacao-form">
+          <div class="form-section">
+            <h3>Informações do Evento</h3>
+            
+            <div class="form-group">
+              <label for="titulo" class="form-label">Título do Evento *</label>
+              <input type="text" id="titulo" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label for="descricao" class="form-label">Descrição</label>
+              <textarea id="descricao" class="form-control" rows="4"></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="tipo_evento" class="form-label">Tipo de Evento</label>
+                <select id="tipo_evento" class="form-control">
+                  <option value="">Selecione...</option>
+                  <option value="feira">Feira</option>
+                  <option value="show">Show</option>
+                  <option value="palestra">Palestra</option>
+                  <option value="reuniao">Reunião</option>
+                  <option value="outro">Outro</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="publico" class="form-label">Público Estimado</label>
+                <input type="number" id="publico" class="form-control" min="1">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Local e Data</h3>
+            
+            <div class="form-group">
+              <label for="endereco" class="form-label">Endereço *</label>
+              <input type="text" id="endereco" class="form-control" required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="bairro" class="form-label">Bairro *</label>
+                <input type="text" id="bairro" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label for="cidade" class="form-label">Cidade *</label>
+                <input type="text" id="cidade" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label for="estado" class="form-label">Estado *</label>
+                <select id="estado" class="form-control" required>
+                  <option value="">Selecione...</option>
+                  <option value="RJ">Rio de Janeiro</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cep" class="form-label">CEP</label>
+                <input type="text" id="cep" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="data_inicio" class="form-label">Data de Início *</label>
+                <input type="datetime-local" id="data_inicio" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label for="data_fim" class="form-label">Data de Fim *</label>
+                <input type="datetime-local" id="data_fim" class="form-control" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Observações</h3>
+            
+            <div class="form-group">
+              <label for="observacoes" class="form-label">Observações Adicionais</label>
+              <textarea id="observacoes" class="form-control" rows="4"></textarea>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary">Cancelar</button>
+            <button type="submit" class="btn btn-primary">Enviar Solicitação</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,212 @@
+<div class="home-container">
+  <app-header></app-header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-title">
+          Portal PMERJ
+          <span class="hero-subtitle">Sistema de Autorizações e Palestras</span>
+        </h1>
+        <p class="hero-description">
+          Bem-vindo ao portal oficial da Polícia Militar do Estado do Rio de Janeiro. 
+          Solicite autorizações para eventos e palestras de forma simples e eficiente.
+        </p>
+        <div class="hero-actions">
+          <button class="btn-primary" (click)="navigateToForm()">
+            <i class="fas fa-plus-circle"></i>
+            Nova Solicitação
+          </button>
+          <button class="btn-secondary" (click)="navigateToUserDashboard()">
+            <i class="fas fa-user"></i>
+            Meu Portal
+          </button>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="hero-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Nossos Serviços</h2>
+        <p class="section-description">
+          Escolha o tipo de solicitação que melhor atende às suas necessidades
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card primary-card" (click)="navigateToForm()">
+          <div class="service-icon">
+            <i class="fas fa-file-contract"></i>
+          </div>
+          <div class="service-content">
+            <h3 class="service-title">Solicitar Nada Opor</h3>
+            <p class="service-description">
+              Solicite autorização para eventos, manifestações e atividades que requerem 
+              autorização da Polícia Militar.
+            </p>
+            <div class="service-features">
+              <span class="feature-tag">Eventos</span>
+              <span class="feature-tag">Manifestações</span>
+              <span class="feature-tag">Atividades Públicas</span>
+            </div>
+          </div>
+          <div class="service-arrow">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </div>
+
+        <div class="service-card secondary-card" (click)="navigateToForm()">
+          <div class="service-icon">
+            <i class="fas fa-chalkboard-teacher"></i>
+          </div>
+          <div class="service-content">
+            <h3 class="service-title">Solicitar Palestra</h3>
+            <p class="service-description">
+              Solicite palestras educativas da PMERJ sobre segurança, prevenção e 
+              orientações para sua comunidade.
+            </p>
+            <div class="service-features">
+              <span class="feature-tag">Educação</span>
+              <span class="feature-tag">Prevenção</span>
+              <span class="feature-tag">Segurança</span>
+            </div>
+          </div>
+          <div class="service-arrow">
+            <i class="fas fa-arrow-right"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Access Section -->
+  <section class="quick-access-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Acesso Rápido</h2>
+        <p class="section-description">
+          Acesse rapidamente as principais funcionalidades do portal
+        </p>
+      </div>
+
+      <div class="quick-access-grid">
+        <div class="quick-card" (click)="navigateToUserDashboard()">
+          <div class="quick-icon">
+            <i class="fas fa-user-circle"></i>
+          </div>
+          <h3 class="quick-title">Área do Cidadão</h3>
+          <p class="quick-description">
+            Acompanhe suas solicitações e gerencie seu perfil
+          </p>
+        </div>
+
+        <div class="quick-card" (click)="navigateToAdminLogin()">
+          <div class="quick-icon">
+            <i class="fas fa-user-shield"></i>
+          </div>
+          <h3 class="quick-title">Área Administrativa</h3>
+          <p class="quick-description">
+            Acesso exclusivo para administradores do sistema
+          </p>
+        </div>
+
+        <div class="quick-card" (click)="navigateToUserLogin()">
+          <div class="quick-icon">
+            <i class="fas fa-sign-in-alt"></i>
+          </div>
+          <h3 class="quick-title">Fazer Login</h3>
+          <p class="quick-description">
+            Acesse sua conta para gerenciar solicitações
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Info Section -->
+  <section class="info-section">
+    <div class="container">
+      <div class="info-content">
+        <div class="info-text">
+          <h2 class="info-title">Sobre o Portal PMERJ</h2>
+          <p class="info-description">
+            O Portal PMERJ é uma plataforma digital desenvolvida para facilitar o acesso 
+            aos serviços da Polícia Militar do Estado do Rio de Janeiro. Através deste 
+            portal, cidadãos podem solicitar autorizações para eventos e palestras de 
+            forma transparente e eficiente.
+          </p>
+          <div class="info-features">
+            <div class="info-feature">
+              <i class="fas fa-clock"></i>
+              <span>Processo Rápido</span>
+            </div>
+            <div class="info-feature">
+              <i class="fas fa-shield-alt"></i>
+              <span>Seguro e Confiável</span>
+            </div>
+            <div class="info-feature">
+              <i class="fas fa-mobile-alt"></i>
+              <span>Acesso Mobile</span>
+            </div>
+          </div>
+        </div>
+        <div class="info-stats">
+          <div class="stat-item">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">Disponibilidade</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Digital</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">PMERJ</div>
+            <div class="stat-label">Oficial</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3 class="footer-title">Portal PMERJ</h3>
+          <p class="footer-description">
+            Sistema oficial de autorizações e palestras da Polícia Militar do Estado do Rio de Janeiro.
+          </p>
+        </div>
+        <div class="footer-section">
+          <h4 class="footer-subtitle">Contato</h4>
+          <div class="footer-contact">
+            <p><i class="fas fa-phone"></i> (21) 2334-5000</p>
+            <p><i class="fas fa-envelope"></i> portal@pmerj.rj.gov.br</p>
+            <p><i class="fas fa-map-marker-alt"></i> Rio de Janeiro, RJ</p>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h4 class="footer-subtitle">Links Úteis</h4>
+          <div class="footer-links">
+            <a href="#" class="footer-link">Política de Privacidade</a>
+            <a href="#" class="footer-link">Termos de Uso</a>
+            <a href="#" class="footer-link">Ajuda</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Portal PMERJ. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+</div>

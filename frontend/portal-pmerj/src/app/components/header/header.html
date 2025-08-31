@@ -1,0 +1,59 @@
+<header class="header">
+  <div class="header-container">
+    <div class="logo-section">
+      <a routerLink="/" class="logo">
+        <i class="fas fa-shield-alt"></i>
+        <span class="logo-text">Portal PMERJ</span>
+      </a>
+    </div>
+
+    <div class="header-content">
+      <div class="search-section">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Pesquisar..." class="search-input">
+        </div>
+      </div>
+
+      <div class="user-section">
+        <div *ngIf="currentUser; else loginDropdown" class="user-info">
+          <div class="user-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="user-details">
+            <span class="user-name">{{ currentUser.nome }}</span>
+            <span class="user-role">{{ currentUser.tipo_usuario === 'ADMIN' ? 'Administrador' : 'Cidadão' }}</span>
+          </div>
+          <button class="logout-btn" (click)="logout()">
+            <i class="fas fa-sign-out-alt"></i>
+          </button>
+        </div>
+
+        <ng-template #loginDropdown>
+          <div class="login-dropdown">
+            <button class="login-btn" (click)="toggleDropdown()">
+              <i class="fas fa-user-circle"></i>
+              <span>Entrar</span>
+              <i class="fas fa-chevron-down" [class.rotated]="isDropdownOpen"></i>
+            </button>
+            
+            <div class="dropdown-menu" [class.show]="isDropdownOpen">
+              <a href="/login-user" class="dropdown-item">
+                <i class="fas fa-user"></i>
+                <span>Login Cidadão</span>
+              </a>
+              <a href="/login-admin" class="dropdown-item">
+                <i class="fas fa-user-shield"></i>
+                <span>Login Administrador</span>
+              </a>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <div class="breadcrumb">
+    <span class="breadcrumb-text">{{ getBreadcrumbText() }}</span>
+  </div>
+</header>
