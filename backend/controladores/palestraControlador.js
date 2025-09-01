@@ -75,3 +75,19 @@ export async function cancelarSolicitacaoPalestra(req, res) {
     return res.status(500).json({ erro: 'Erro ao cancelar' });
   }
 }
+
+export async function listarPalestrasUsuario(req, res) {
+  try {
+    const usuario_id = req.usuario.id;
+    const [rows] = await pool.query(
+      `SELECT * FROM solicitacoes_palestras 
+       WHERE usuario_id = ? 
+       ORDER BY criado_em DESC`,
+      [usuario_id]
+    );
+    return res.json(rows);
+  } catch (e) {
+    console.error(e);
+    return res.status(500).json({ erro: 'Erro ao listar palestras' });
+  }
+}

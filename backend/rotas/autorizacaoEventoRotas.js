@@ -10,7 +10,8 @@ import {
   listarAnexos,
   anexarArquivoGravado,
   baixarAnexo,
-  excluirAnexo
+  excluirAnexo,
+  listarAutorizacoesUsuario
 } from '../controladores/autorizacaoEventoControlador.js';
 
 const UPLOAD_DIR = process.env.UPLOAD_DIR || './uploads';
@@ -47,6 +48,7 @@ const upload = multer({ storage, fileFilter });
 
 
 const router = Router();
+router.get('/', listarAutorizacoesUsuario);
 router.post('/', criarAutorizacaoEvento);
 router.get('/:protocolo', obterPorProtocolo);
 router.put('/:protocolo', editarAutorizacaoEvento);

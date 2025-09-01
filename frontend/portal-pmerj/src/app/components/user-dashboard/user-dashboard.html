@@ -7,7 +7,21 @@
       <p>Acompanhe suas solicitações e status</p>
     </div>
 
-    <div class="dashboard-content">
+    <!-- Loading State -->
+    <div *ngIf="loading" class="loading-state">
+      <div class="spinner"></div>
+      <p>Carregando dados...</p>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="error && !loading" class="error-state">
+      <i class="fas fa-exclamation-triangle"></i>
+      <p>{{ error }}</p>
+      <button class="btn btn-primary" (click)="carregarDados()">Tentar Novamente</button>
+    </div>
+
+    <!-- Dashboard Content -->
+    <div *ngIf="!loading && !error && dashboardData" class="dashboard-content">
       <div class="stats-grid">
         <div class="stat-card">
           <div class="stat-icon">
@@ -15,7 +29,7 @@
           </div>
           <div class="stat-info">
             <h3>Minhas Autorizações</h3>
-            <p class="stat-number">0</p>
+            <p class="stat-number">{{ dashboardData.totalAutorizacoes }}</p>
             <p class="stat-label">Total de solicitações</p>
           </div>
         </div>
@@ -26,7 +40,7 @@
           </div>
           <div class="stat-info">
             <h3>Minhas Palestras</h3>
-            <p class="stat-number">0</p>
+            <p class="stat-number">{{ dashboardData.totalPalestras }}</p>
             <p class="stat-label">Total de solicitações</p>
           </div>
         </div>
@@ -37,7 +51,7 @@
           </div>
           <div class="stat-info">
             <h3>Em Análise</h3>
-            <p class="stat-number">0</p>
+            <p class="stat-number">{{ dashboardData.emAnalise }}</p>
             <p class="stat-label">Aguardando resposta</p>
           </div>
         </div>
@@ -48,7 +62,7 @@
           </div>
           <div class="stat-info">
             <h3>Aprovadas</h3>
-            <p class="stat-number">0</p>
+            <p class="stat-number">{{ dashboardData.aprovadas }}</p>
             <p class="stat-label">Solicitações aprovadas</p>
           </div>
         </div>
@@ -57,7 +71,7 @@
       <div class="actions-section">
         <h2>Ações Rápidas</h2>
         <div class="actions-grid">
-          <button class="action-btn">
+          <button class="action-btn" (click)="navegarParaNovaSolicitacao()">
             <i class="fas fa-plus"></i>
             <span>Nova Solicitação</span>
           </button>
@@ -72,12 +86,51 @@
         </div>
       </div>
 
+      <!-- Solicitações Recentes -->
       <div class="recent-section">
         <h2>Solicitações Recentes</h2>
-        <div class="empty-state">
+        
+        <!-- Empty State -->
+        <div *ngIf="dashboardData.autorizacoes.length === 0 && dashboardData.palestras.length === 0" class="empty-state">
           <i class="fas fa-inbox"></i>
           <p>Nenhuma solicitação encontrada</p>
-          <button class="btn btn-primary">Fazer Primeira Solicitação</button>
+          <button class="btn btn-primary" (click)="navegarParaNovaSolicitacao()">Fazer Primeira Solicitação</button>
+        </div>
+
+        <!-- Autorizações -->
+        <div *ngIf="dashboardData.autorizacoes.length > 0" class="solicitacoes-list">
+          <h3>Autorizações de Eventos</h3>
+          <div class="solicitacao-item" *ngFor="let auth of dashboardData.autorizacoes.slice(0, 5)">
+            <div class="solicitacao-header">
+              <h4>{{ auth.titulo }}</h4>
+              <span class="status-badge" [class]="getStatusClass(auth.status)">
+                {{ getStatusText(auth.status) }}
+              </span>
+            </div>
+            <div class="solicitacao-details">
+              <p><strong>Protocolo:</strong> {{ auth.protocolo }}</p>
+              <p><strong>Data:</strong> {{ formatarData(auth.data_inicio) }}</p>
+              <p><strong>Local:</strong> {{ auth.cidade }}, {{ auth.estado }}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Palestras -->
+        <div *ngIf="dashboardData.palestras.length > 0" class="solicitacoes-list">
+          <h3>Solicitações de Palestras</h3>
+          <div class="solicitacao-item" *ngFor="let palestra of dashboardData.palestras.slice(0, 5)">
+            <div class="solicitacao-header">
+              <h4>{{ palestra.temas }}</h4>
+              <span class="status-badge" [class]="getStatusClass(palestra.status)">
+                {{ getStatusText(palestra.status) }}
+              </span>
+            </div>
+            <div class="solicitacao-details">
+              <p><strong>Protocolo:</strong> {{ palestra.protocolo }}</p>
+              <p><strong>Data Sugerida:</strong> {{ formatarData(palestra.data_sugerida) }}</p>
+              <p><strong>Local:</strong> {{ palestra.cidade }}, {{ palestra.estado }}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

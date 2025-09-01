@@ -224,3 +224,19 @@ export async function excluirAnexo(req, res) {
   }
 }
 
+export async function listarAutorizacoesUsuario(req, res) {
+  try {
+    const usuario_id = req.usuario.id;
+    const [rows] = await pool.query(
+      `SELECT * FROM autorizacoes_eventos 
+       WHERE usuario_id = ? 
+       ORDER BY criado_em DESC`,
+      [usuario_id]
+    );
+    return res.json(rows);
+  } catch (e) {
+    console.error(e);
+    return res.status(500).json({ erro: 'Erro ao listar autorizações' });
+  }
+}
+

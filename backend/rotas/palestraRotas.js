@@ -3,10 +3,12 @@ import {
   criarSolicitacaoPalestra,
   obterPalestraPorProtocolo,
   editarSolicitacaoPalestra,
-  cancelarSolicitacaoPalestra
+  cancelarSolicitacaoPalestra,
+  listarPalestrasUsuario
 } from '../controladores/palestraControlador.js';
 
 const router = Router();
+router.get('/', listarPalestrasUsuario);
 router.post('/', criarSolicitacaoPalestra);
 router.get('/:protocolo', obterPalestraPorProtocolo);
 router.put('/:protocolo', editarSolicitacaoPalestra);
