@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone, ChangeDetectorRef } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -35,7 +35,9 @@ export class LoginUserComponent {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private ngZone: NgZone,
+    private cdr: ChangeDetectorRef
   ) {
     console.log('LoginUserComponent inicializado');
   }
@@ -90,7 +92,9 @@ export class LoginUserComponent {
       next: (response) => {
         console.log('Cadastro bem-sucedido:', response);
         this.cadastroLoading = false;
-        this.showCadastro = false;
+        // Fecha o modal e força detecção (zoneless)
+        this.fecharModalCadastro();
+        this.cdr.detectChanges();
         this.errorMessage = '';
         alert('Cadastro realizado com sucesso! Faça login para continuar.');
         
@@ -111,4 +115,22 @@ export class LoginUserComponent {
       }
     });
   }
+
+  fecharModalCadastro(): void {
+    this.showCadastro = false;
+    // Aqui você pode adicionar lógica extra se necessário para fechar o modal de cadastro
+    // Por exemplo, resetar outros estados ou emitir eventos
+    console.log('Modal de cadastro fechado');
+    // Reset seguro do estado do formulário
+    this.cadastroLoading = false;
+    this.cadastroError = '';
+    this.cadastroData = {
+      nome: '',
+      email: '',
+      telefone: '',
+      documento: '',
+      senha: ''
+    };
+  }
+
 }

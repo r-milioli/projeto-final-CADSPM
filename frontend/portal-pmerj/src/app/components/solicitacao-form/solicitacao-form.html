@@ -10,17 +10,18 @@
     <div class="form-container">
       <div class="form-card">
         <div class="form-tabs">
-          <button class="tab-btn active">
+          <button class="tab-btn" [class.active]="activeTab === 'nada-opor'" (click)="setActiveTab('nada-opor')">
             <i class="fas fa-file-alt"></i>
             <span>Nada Opor</span>
           </button>
-          <button class="tab-btn">
+          <button class="tab-btn" [class.active]="activeTab === 'palestra'" (click)="setActiveTab('palestra')">
             <i class="fas fa-chalkboard-teacher"></i>
             <span>Palestra</span>
           </button>
         </div>
 
-        <form class="solicitacao-form">
+        <!-- Aba Nada Opor -->
+        <form class="solicitacao-form" *ngIf="activeTab === 'nada-opor'">
           <div class="form-section">
             <h3>Informações do Evento</h3>
             
@@ -44,6 +45,17 @@
                   <option value="palestra">Palestra</option>
                   <option value="reuniao">Reunião</option>
                   <option value="outro">Outro</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="batalhao" class="form-label">Batalhão Responsável *</label>
+                <select id="batalhao" class="form-control" required>
+                  <option value="">Selecione o Batalhão...</option>
+                  <option value="11">11º BPM</option>
+                  <option value="31">31º BPM</option>
+                  <option value="35">35º BPM</option>
+                  <option value="07">07º BPM</option>
                 </select>
               </div>
 
@@ -110,8 +122,126 @@
           </div>
 
           <div class="form-actions">
-            <button type="button" class="btn btn-secondary">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Enviar Solicitação</button>
+            <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+            <button type="submit" class="btn btn-primary" (click)="enviarSolicitacao()">Enviar Solicitação</button>
+          </div>
+        </form>
+
+        <!-- Aba Palestra -->
+        <form class="solicitacao-form" *ngIf="activeTab === 'palestra'">
+          <div class="form-section">
+            <h3>Informações da Palestra</h3>
+            
+            <div class="form-group">
+              <label for="titulo_palestra" class="form-label">Título da Palestra *</label>
+              <input type="text" id="titulo_palestra" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label for="tema_palestra" class="form-label">Tema da Palestra *</label>
+              <select id="tema_palestra" class="form-control" required>
+                <option value="">Selecione o Tema...</option>
+                <option value="seguranca">Segurança Pública</option>
+                <option value="prevencao">Prevenção ao Crime</option>
+                <option value="educacao">Educação para o Trânsito</option>
+                <option value="violencia">Prevenção à Violência</option>
+                <option value="drogas">Prevenção ao Uso de Drogas</option>
+                <option value="outro">Outro</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="descricao_palestra" class="form-label">Descrição da Palestra</label>
+              <textarea id="descricao_palestra" class="form-control" rows="4" placeholder="Descreva os objetivos e conteúdo da palestra..."></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="batalhao_palestra" class="form-label">Batalhão Responsável *</label>
+                <select id="batalhao_palestra" class="form-control" required>
+                  <option value="">Selecione o Batalhão...</option>
+                  <option value="11">11º BPM</option>
+                  <option value="31">31º BPM</option>
+                  <option value="35">35º BPM</option>
+                  <option value="07">07º BPM</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="publico_palestra" class="form-label">Público Estimado</label>
+                <input type="number" id="publico_palestra" class="form-control" min="1" placeholder="Número de participantes">
+              </div>
+
+              <div class="form-group">
+                <label for="duracao_palestra" class="form-label">Duração Estimada (horas)</label>
+                <input type="number" id="duracao_palestra" class="form-control" min="0.5" step="0.5" placeholder="Ex: 2.0">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Local e Data</h3>
+            
+            <div class="form-group">
+              <label for="endereco_palestra" class="form-label">Endereço *</label>
+              <input type="text" id="endereco_palestra" class="form-control" required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="bairro_palestra" class="form-label">Bairro *</label>
+                <input type="text" id="bairro_palestra" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label for="cidade_palestra" class="form-label">Cidade *</label>
+                <input type="text" id="cidade_palestra" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label for="estado_palestra" class="form-label">Estado *</label>
+                <select id="estado_palestra" class="form-control" required>
+                  <option value="">Selecione...</option>
+                  <option value="RJ">Rio de Janeiro</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cep_palestra" class="form-label">CEP</label>
+                <input type="text" id="cep_palestra" class="form-control">
+              </div>
+
+              <div class="form-group">
+                <label for="data_inicio_palestra" class="form-label">Data de Início *</label>
+                <input type="datetime-local" id="data_inicio_palestra" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label for="data_fim_palestra" class="form-label">Data de Fim *</label>
+                <input type="datetime-local" id="data_fim_palestra" class="form-control" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>Informações Adicionais</h3>
+            
+            <div class="form-group">
+              <label for="equipamentos" class="form-label">Equipamentos Necessários</label>
+              <textarea id="equipamentos" class="form-control" rows="3" placeholder="Ex: Projetor, microfone, tela..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="observacoes_palestra" class="form-label">Observações Adicionais</label>
+              <textarea id="observacoes_palestra" class="form-control" rows="4"></textarea>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+            <button type="submit" class="btn btn-primary" (click)="enviarSolicitacao()">Enviar Solicitação</button>
           </div>
         </form>
       </div>
